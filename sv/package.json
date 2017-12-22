@@ -1,0 +1,15 @@
+{
+  "name": "potentii-github-io-sv",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "keywords": [],
+  "author": "Guilherme Reginaldo Ruella <potentii@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "w-srvr": "^2.2.1"
+  }
+}

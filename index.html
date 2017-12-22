@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- * Meta * -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="theme-color" content="#000000">
+
+      <!-- * Fonts * -->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto+Slab:400,700|Roboto:400,500,700">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+      <!-- * Identity * -->
+      <link rel="stylesheet" href="/static/identity/resets.css">
+      <link rel="stylesheet" href="/static/identity/colors.css">
+      <link rel="stylesheet" href="/static/identity/typography.css">
+      <link rel="stylesheet" href="/static/identity/content-page.css">
+
+      <!-- * Libraries * -->
+      <script src="/static/libs/vue/dist/vue.js"></script>
+      <script src="/static/libs/vuex/dist/vuex.js"></script>
+      <script src="/static/libs/vue-router/dist/vue-router.js"></script>
+
+      <!-- * Stores * -->
+      <script src="/static/store/store.js"></script>
+
+      <!-- * Controls * -->
+      <script src="/static/controls/components.js"></script>
+      <script src="/static/controls/navigation.js"></script>
+
+      <!-- * Tagged string template functions * -->
+      <script>
+         const html = template => template[0];
+      </script>
+
+      <!-- * Elements * -->
+
+      <!-- * Components * -->
+
+      <!-- * Compositions * -->
+
+      <!-- * Pages * -->
+      <link  href="/static/pages/index/_.css" rel="stylesheet">
+      <script src="/static/pages/index/_.js"></script>
+
+      <!-- * Initializations * -->
+      <script>
+         const ENVS = Object.freeze({
+            PRODUCTION: 'production',
+            DEVELOPMENT: 'development'
+         });
+
+         const ENV = ENVS.DEVELOPMENT;
+
+         // *Setting up Vue.js:
+         navigation
+            .navigationMode(navigation.MODES.HASH)
+            .mountOn('#app')
+            .then(router => {
+               // *Logging that the UI is ready:
+               (ENV!=ENVS.PRODUCTION) && console.info('UI ready');
+               // *Loading the default page:
+               router.replace({ name: 'index' });
+            })
+            // *Logging errors:
+            .catch(err => (ENV!=ENVS.PRODUCTION) && console.error(err));
+      </script>
+
+      <!-- * App's title * -->
+      <title>Potentii</title>
+   </head>
+   <body>
+      <div id="app">
+         <router-view></router-view>
+      </div>
+   </body>
+</html>

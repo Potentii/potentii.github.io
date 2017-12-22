@@ -1,0 +1,14 @@
+{
+  "name": "potentii-github-io",
+  "version": "1.0.0",
+  "author": "Guilherme Reginaldo Ruella <potentii@gmail.com>",
+  "scripts": {
+    "start": "node ./sv/main.js"
+  },
+  "keywords": [],
+  "dependencies": {
+    "vue": "^2.5.5",
+    "vue-router": "^2.8.1",
+    "vuex": "^3.0.1"
+  }
+}
