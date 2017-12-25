@@ -24,18 +24,8 @@ server
 
    // *Mapping the static resources:
    .static
-   .add('/static/libs',         '../node_modules')
-   .add('/static/api',          '../api')
-   .add('/static/pages',        '../pages')
-   .add('/static/store',        '../store')
-   .add('/static/controls',     '../controls')
-   .add('/static/identity',     '../identity')
-   .add('/static/elements',     '../elements')
-   .add('/static/resources',    '../resources')
-   .add('/static/components',   '../components')
-   .add('/static/compositions', '../compositions')
-
-   .index('../index.html',  {root_only:false})
+   .add('/', '..')
+   .index('../index.html')
    .done()
 
    // *Starting the server:
