@@ -4,74 +4,26 @@
       <!-- * Meta * -->
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="theme-color" content="#000000">
+		<meta name="theme-color" content="#101010">
 
-      <!-- * Fonts * -->
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto+Slab:400,700|Roboto:400,500,700">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<!-- * Fonts * -->
+		<link href="https://fonts.googleapis.com" rel="preconnect">
+		<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-      <!-- * Identity * -->
-      <link rel="stylesheet" href="./identity/resets.css">
-      <link rel="stylesheet" href="./identity/colors.css">
-      <link rel="stylesheet" href="./identity/typography.css">
-      <link rel="stylesheet" href="./identity/content-page.css">
+      <!-- * Resets * -->
+      <link rel="stylesheet prefetch" href="cross/resets.css">
 
-      <!-- * Libraries * -->
-      <script src="https://unpkg.com/vue@2.5.5/dist/vue.min.js"></script>
-      <script src="https://unpkg.com/vuex@3.0.1/dist/vuex.js"></script>
-      <script src="https://unpkg.com/vue-router@2.8.1/dist/vue-router.js"></script>
-
-      <!-- * Stores * -->
-      <script src="./store/store.js"></script>
-
-      <!-- * Controls * -->
-      <script src="./controls/components.js"></script>
-      <script src="./controls/navigation.js"></script>
-
-      <!-- * Tagged string template functions * -->
-      <script>
-         const html = template => template[0];
-      </script>
-
-      <!-- * Elements * -->
-
-      <!-- * Components * -->
-
-      <!-- * Compositions * -->
-
-      <!-- * Pages * -->
-      <link  href="./pages/index/_.css" rel="stylesheet">
-      <script src="./pages/index/_.js"></script>
-
-      <!-- * Initializations * -->
-      <script>
-         const ENVS = Object.freeze({
-            PRODUCTION: 'production',
-            DEVELOPMENT: 'development'
-         });
-
-         const ENV = ENVS.DEVELOPMENT;
-
-         // *Setting up Vue.js:
-         navigation
-            .navigationMode(navigation.MODES.HASH)
-            .mountOn('#app')
-            .then(router => {
-               // *Logging that the UI is ready:
-               (ENV!=ENVS.PRODUCTION) && console.info('UI ready');
-               // *Loading the default page:
-               router.replace({ name: 'index' });
-            })
-            // *Logging errors:
-            .catch(err => (ENV!=ENVS.PRODUCTION) && console.error(err));
-      </script>
+		<script src="main.mjs" type="module" defer crossorigin="anonymous"></script>
 
       <!-- * App's title * -->
       <title>Potentii</title>
    </head>
+
    <body>
-      <div id="app">
-         <router-view></router-view>
-      </div>
+
+      <div id="app"></div>
+
    </body>
 </html>
