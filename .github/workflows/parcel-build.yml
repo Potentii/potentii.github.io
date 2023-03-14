@@ -26,4 +26,5 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm run parcel-build-github --if-present
+    - run: npm run parcel-build
+    - run: npm run dist-build

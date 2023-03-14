@@ -15,7 +15,7 @@
 		"parcel-serve": "rimraf \"./out/parcel-serve\" && parcel serve \"./\" --target browserDev --no-autoinstall --dist-dir \"./out/parcel-serve/bundle\" --cache-dir \"./out/parcel-serve/cache\" --port 1234",
 		"parcel-watch": "rimraf \"./out/parcel-watch\" && parcel watch \"./\" --target browserDev --no-autoinstall --dist-dir \"./out/parcel-watch/bundle\" --cache-dir \"./out/parcel-watch/cache\"",
 		"parcel-build": "rimraf \"./out/parcel-build\" && parcel build \"./\" --target browserDev --no-autoinstall --dist-dir \"./out/parcel-build/bundle\" --cache-dir \"./out/parcel-build/cache\" --no-cache",
-		"dist-build": "rimraf \"./docs\" && copyfiles \"./out/parcel-build/bundle\" \"./docs\""
+		"dist-build": "rimraf \"./docs\" && copyfiles -u 3 \"./out/parcel-build/bundle/**/*\" \"./docs\""
 	},
 
 	"targets": {
