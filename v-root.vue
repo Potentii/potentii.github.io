@@ -348,12 +348,16 @@ html, body, #app{
 
 	--transparent-black: rgba(0,0,0,0.06);
 
+	--theme-fg--1: #F0E4F4;
+	--theme-bg--1: #101010;
+
+
 
    /**
     * Theme colors
     */
    /* Blank */
-   --blank-bg--base: #262626;
+   --blank-bg--base: var(--theme-bg--1);
    --blank-bg--1: var(--blank-bg--base);
    --blank-bg--2: var(--m-grey-900);
    --blank-fg--base: var(--m-grey-100);
@@ -387,12 +391,12 @@ html, body, #app{
    width: 100%;
    height: 100%;
 
-   background-color: var(--blank-bg--base);
-	color: var(--blank-fg--base);
+   background-color: var(--theme-bg--1);
+	color: var(--theme-fg--1);
 
-	font-family: 'Inter', sans-serif;
+	font-family: 'Poppins', sans-serif;
    font-size: 16px;
-	letter-spacing: 0.07em;
+	/*letter-spacing: 0.07em;*/
    -webkit-font-smoothing: antialiased;
 
 	overflow: hidden;
