@@ -6,13 +6,17 @@
 			'--bold': !!bold,
 			'--italic': !!italic,
 			'--resizeable': !!resizeable,
+			'--outline': !!outline,
+			'--with-icon': !!icon,
+			'--icon-to-right': !!iconToRight,
+			'--capsule': !!capsule,
 			'--textarea': type=='textarea',
 		}"
 		:data-type="type">
 
 		<v-loading-spinner class="-loading" v-if="loading"></v-loading-spinner>
 
-		<i class="-icon material-icons" v-else-if="icon && !loading">{{ icon }}</i>
+		<i class="-icon material-icons" v-if="icon && !loading && !iconToRight">{{ icon }}</i>
 
 <!--		<template v-if="type == 'output'">-->
 <!--			<span-->
@@ -55,6 +59,9 @@
 				@input="$emit('input', $event)">
 			</textarea>
 		</template>
+
+
+		<i class="-icon material-icons" v-if="icon && !loading && !!iconToRight">{{ icon }}</i>
 
 	</div>
 </template>
@@ -172,6 +179,24 @@ export default {
 			default: false
 		},
 
+		'outline': {
+			type: Boolean,
+			required: false,
+			default: false
+		},
+
+		'iconToRight': {
+			type: Boolean,
+			required: false,
+			default: false
+		},
+
+		'capsule': {
+			type: Boolean,
+			required: false,
+			default: false
+		},
+
 	},
 
 
@@ -246,7 +271,7 @@ export default {
 	--var-fg--hover:     var(--v-text-field-2--fg--hover, var(--var-fg));
 	--var-elems-margin:  var(--v-text-field-2--elems-margin, 1em);
 	--var-border-radius: var(--v-text-field-2--border-radius, 3px);
-	--var-border-color:  var(--v-text-field-2--border-color, var(--m-grey-700));
+	--var-border-color:  var(--v-text-field-2--border-color, #fff);
 
 	cursor: text;
 
@@ -266,10 +291,19 @@ export default {
 
 	font-size: var(--var-fsize);
 
+	padding: 0 14px;
+
 	border-radius: var(--var-border-radius);
 }
 .v-text-field-2.--textarea{
 	--var-padding-h: var(--v-text-field-2--padding-h, var(--var-padding-v));
+}
+
+.v-text-field-2.--capsule{
+	--var-border-radius: 1000px;
+}
+.v-text-field-2.--outline{
+	box-shadow: inset 0 0 0 3px var(--var-border-color);
 }
 
 .v-text-field-2:focus{
@@ -288,7 +322,7 @@ export default {
 
 	border-radius: var(--var-border-radius);
 
-	box-shadow: 0 0 0 1px var(--var-border-color);
+	/*box-shadow: 0 0 0 1px var(--var-border-color);*/
 
 	transition: opacity, background-color, box-shadow, 0.2s ease;
 }
@@ -322,9 +356,12 @@ export default {
 
 
 .v-text-field-2 > .-icon.material-icons{
+	cursor: default;
+	user-select: none;
 	flex: 0 0 auto;
 	font-size: 1.4em;
 	color: var(--var-fg);
+	/*padding: 0 12px;*/
 	transition: color 0.2s ease;
 }
 .v-text-field-2:not(:disabled):hover > .-icon.material-icons{

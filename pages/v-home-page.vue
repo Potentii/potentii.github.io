@@ -53,6 +53,122 @@
 		<!-- * My Work section * -->
 		<section class="-my-work">
 
+			<span class="-title">My Work</span>
+
+			<div class="-filters">
+
+				<v-text-field2
+					class="-search"
+					placeholder="Search projects..."
+					icon="search"
+					capsule
+					outline
+					icon-to-right>
+				</v-text-field2>
+
+				<div class="-tags">
+
+					<div class="-tag">
+						<div class="-icon"></div>
+						<span class="-title">Software</span>
+					</div>
+					<div class="-tag">
+						<div class="-icon"></div>
+						<span class="-title">3D art</span>
+					</div>
+					<div class="-tag">
+						<div class="-icon"></div>
+						<span class="-title">Articles</span>
+					</div>
+					<div class="-tag">
+						<div class="-icon"></div>
+						<span class="-title">UI/UX</span>
+					</div>
+
+				</div>
+
+			</div>
+
+
+
+			<div class="-results">
+
+				<span class="-empty">No projects found</span>
+
+				<div class="-items">
+
+					<div class="-item">
+
+						<div class="-title">
+
+							<div class="-icon"></div>
+
+							<span class="-text">Lorem ipsum</span>
+
+						</div>
+
+						<div class="-preview">
+							<img class="-image" src=""/>
+							<span class="-description">Lorem ipsum dolor sit amet</span>
+						</div>
+
+					</div>
+
+					<div class="-item">
+
+						<div class="-title">
+
+							<div class="-icon"></div>
+
+							<span class="-text">Lorem ipsum</span>
+
+						</div>
+
+						<div class="-preview">
+							<img class="-image" src=""/>
+							<span class="-description">Lorem ipsum dolor sit amet</span>
+						</div>
+
+					</div>
+
+					<div class="-item">
+
+						<div class="-title">
+
+							<div class="-icon"></div>
+
+							<span class="-text">Lorem ipsum</span>
+
+						</div>
+
+						<div class="-preview">
+							<img class="-image" src=""/>
+							<span class="-description">Lorem ipsum dolor sit amet</span>
+						</div>
+
+					</div>
+
+					<div class="-item">
+
+						<div class="-title">
+
+							<div class="-icon"></div>
+
+							<span class="-text">Lorem ipsum</span>
+
+						</div>
+
+						<div class="-preview">
+							<img class="-image" src=""/>
+							<span class="-description">Lorem ipsum dolor sit amet</span>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
 		</section>
 
 
@@ -63,10 +179,14 @@
 
 <script>
 import VButton from "../@components/v-button.vue";
+import VTextField2 from "../@components/v-text-field-2.vue";
 
 export default {
+
    name: 'v-home-page',
-	components: {VButton},
+
+	components: {VTextField2, VButton},
+
 }
 </script>
 
@@ -74,7 +194,7 @@ export default {
 
 <style>
 .v-home-page{
-	--var-h-min-padding: 10vh;
+	--var-h-min-padding: 5vh;
 
 	display: flex;
 	flex-direction: column;
@@ -84,16 +204,22 @@ export default {
 	overflow-y: auto;
 	overflow-x: hidden;
 	width: 100%;
+
+	padding-bottom: 10em;
 }
 
 
 
-
-
+/*
+ * ==========================================
+ * Hero
+ * ==========================================
+ */
 .v-home-page > .-hero{
+	flex: 1 0 auto;
 	display: grid;
 	grid-template-rows: auto 5em auto auto auto;
-	grid-template-columns: minmax(var(--var-h-min-padding), 1fr) auto auto 8em auto minmax(var(--var-h-min-padding), 1fr);
+	grid-template-columns: minmax(var(--var-h-min-padding), 1fr) auto auto minmax(8em, 2fr) auto minmax(var(--var-h-min-padding), 1fr);
 	grid-template-areas:
 		'... links ... ... photo ...'
 		'... ... ... ... photo ...'
@@ -148,12 +274,18 @@ export default {
 }
 .v-home-page > .-hero > .-greetings > .-text{
 	font-size: 24px;
-	font-weight: bold;
+	font-weight: 700;
 }
 
+.v-home-page > .-hero > .-my-name{
+	/*overflow: hidden;*/
+}
 .v-home-page > .-hero > .-my-name > .-text{
 	font-size: 96px;
-	font-weight: bold;
+	font-weight: 700;
+	transform: translateY(1em);
+	/*margin-top: 1em;*/
+	/*padding-top: 1em;*/
 }
 
 
@@ -178,4 +310,188 @@ export default {
 	/*max-width: 600px;*/
 	object-fit: contain;
 }
+
+
+
+/*
+ * ==========================================
+ * Separator
+ * ==========================================
+ */
+.v-home-page > .-separator{
+	flex: 1 0 auto;
+
+	min-width: 30em;
+	width: calc(70vw - calc(var(--var-h-min-padding) * 2));
+	max-width: calc(100vw - 10em);
+	height: 8px;
+	background-color: var(--theme-fg--1);
+	border-radius: 100px;
+	align-self: center;
+
+	margin: 6em 0;
+}
+
+@keyframes --anim-text-appear-bottom {
+	from {
+
+	}
+	to {
+
+	}
+}
+
+
+
+/*
+ * ==========================================
+ * My Work
+ * ==========================================
+ */
+.v-home-page > .-my-work{
+	flex: 1 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2em;
+
+	margin-top: -2em;
+}
+
+.v-home-page > .-my-work > .-title{
+	flex: 1 0 auto;
+	font-size: 32px;
+	font-weight: 700;
+}
+
+
+.v-home-page > .-my-work > .-filters{
+	flex: 1 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2em;
+}
+
+.v-home-page > .-my-work > .-filters > .-search{
+	flex: 1 0 auto;
+	--v-text-field-2--border-color: var(--theme-fg--1);
+	--v-text-field-2--fg: var(--theme-fg--1);
+}
+
+.v-home-page > .-my-work > .-filters > .-tags{
+	flex: 1 0 auto;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 2em;
+}
+.v-home-page > .-my-work > .-filters > .-tags > .-tag{
+	flex: 1 0 auto;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 8px;
+
+	/*width: 150px;*/
+	height: 40px;
+	box-shadow: inset 0 0 0 3px var(--theme-fg--1);
+	border-radius: 100px;
+	padding: 0 32px 0 10px;
+}
+.v-home-page > .-my-work > .-filters > .-tags > .-tag > .-icon{
+	flex: 1 0 auto;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: var(--theme-fg--1);
+}
+.v-home-page > .-my-work > .-filters > .-tags > .-tag > .-title{
+	flex: 1 0 auto;
+
+}
+
+
+.v-home-page > .-my-work > .-results{
+	flex: 1 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2em;
+
+	margin-top: 2em;
+}
+.v-home-page > .-my-work > .-results > .-empty{
+	flex: 1 0 auto;
+	opacity: 0.5;
+	font-style: italic;
+	padding: 1em 2em;
+	background-color: #333;
+	border-radius: 4em;
+
+}
+.v-home-page > .-my-work > .-results > .-items{
+	flex: 1 0 auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 2em;
+}
+.v-home-page > .-my-work > .-results > .-items > .-item{
+	width: 250px;
+	height: 300px;
+
+	padding: 18px;
+
+	box-shadow: inset 0 0 0 3px var(--theme-fg--1);
+	border-radius: 18px;
+}
+.v-home-page > .-my-work > .-results > .-items > .-item > .-title{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 18px;
+	z-index: 1;
+}
+.v-home-page > .-my-work > .-results > .-items > .-item > .-title > .-icon{
+	flex: 0 0 auto;
+	width: 32px;
+	height: 32px;
+	background-color: var(--theme-fg--1);
+	border-radius: 50%;
+}
+.v-home-page > .-my-work > .-results > .-items > .-item > .-title > .-text{
+	flex: 1 0 auto;
+
+}
+.v-home-page > .-my-work > .-results > .-items > .-item > .-preview{
+	position: absolute;
+
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+.v-home-page > .-my-work > .-results > .-items > .-item > .-preview > .-image{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	border-radius: 18px;
+	overflow: hidden;
+	object-fit: cover;
+}
+.v-home-page > .-my-work > .-results > .-items > .-item > .-preview > .-description{
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	padding: 18px;
+
+	font-size: 14px;
+}
+
 </style>
