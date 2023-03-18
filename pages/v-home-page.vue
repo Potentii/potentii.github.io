@@ -1,43 +1,47 @@
 <template>
-	<div class="v-home-page">
+	<div class="v-home-page --thin-scroll --large">
 
 
 		<!-- * Hero section * -->
 		<section class="-hero">
 
 			<div class="-links">
-				<a class="-link -artstation" href="https://www.artstation.com/potentii">
+				<a class="-link -artstation" href="https://www.artstation.com/potentii" title="Artstation profile">
 					<img class="-icon" src="../assets/images/icons/artstation-logo.svg"/>
 				</a>
-				<a class="-link -behance" href="https://www.behance.net/Potentii">
+				<a class="-link -behance" href="https://www.behance.net/Potentii" title="Behance profile">
 					<img class="-icon" src="../assets/images/icons/behance-logo.svg"/>
 				</a>
-				<a class="-link -github" href="https://github.com/Potentii">
+				<a class="-link -github" href="https://github.com/Potentii" title="Github profile">
 					<img class="-icon" src="../assets/images/icons/github-logo.svg"/>
 				</a>
-				<a class="-link -instagram" href="https://www.instagram.com/guilhermereginaldoruella">
+				<a class="-link -instagram" href="https://www.instagram.com/guilhermereginaldoruella" title="Instagram profile">
 					<img class="-icon" src="../assets/images/icons/instagram-logo.svg"/>
 				</a>
-				<a class="-link -linkedin" href="https://www.linkedin.com/in/potentii">
+				<a class="-link -linkedin" href="https://www.linkedin.com/in/potentii" title="Linkedin profile">
 					<img class="-icon" src="../assets/images/icons/linkedin-logo.svg"/>
 				</a>
-				<a class="-link -twitter" href="https://twitter.com/potentii_inc">
+				<a class="-link -twitter" href="https://twitter.com/potentii_inc" title="Twitter profile">
 					<img class="-icon" src="../assets/images/icons/twitter-logo.svg"/>
 				</a>
 			</div>
 
 			<div class="-greetings">
-				<span class="-text">Hi, my name is</span>
+				<v-anim-text delay="0.1" duration="0.3">Hi, </v-anim-text><v-anim-text delay="1.0" duration="0.2">my </v-anim-text><v-anim-text delay="1.1" duration="0.2">name </v-anim-text><v-anim-text delay="1.3" duration="0.2">is</v-anim-text>
 			</div>
 
-			<div class="-my-name">
-				<span class="-text">Guilherme</span>
-			</div>
+			<v-anim-text class="-my-name" delay="1.6" duration="1">Guilherme</v-anim-text>
+
 
 			<div class="-subtext">
-				<span class="-row">Software developer</span>
-				<span class="-row">3D artist</span>
-				<span class="-row">UI/UX designer</span>
+				<v-anim-text class="-row" delay="2.4" duration="0.8" direction="fromRight">Software developer</v-anim-text>
+				<v-anim-text class="-row" delay="2.8" duration="0.8" direction="fromRight">3D artist</v-anim-text>
+				<v-anim-text class="-row" delay="3.2" duration="0.8" direction="fromRight">UI/UX designer</v-anim-text>
+
+
+<!--				<span class="-row"></span>-->
+<!--				<span class="-row"></span>-->
+<!--				<span class="-row"></span>-->
 			</div>
 
 			<div class="-photo">
@@ -180,12 +184,13 @@
 <script>
 import VButton from "../@components/v-button.vue";
 import VTextField2 from "../@components/v-text-field-2.vue";
+import VAnimText from "../@components/v-anim-text.vue";
 
 export default {
 
    name: 'v-home-page',
 
-	components: {VTextField2, VButton},
+	components: {VAnimText, VTextField2, VButton},
 
 }
 </script>
@@ -257,10 +262,9 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: var(--theme-fg--1);
+	/*background-color: var(--theme-fg--1);*/
 	width: 48px;
 	height: 48px;
-	border-radius: 50%;
 }
 .v-home-page > .-hero > .-links > .-link > .-icon{
 	opacity: 0.6;
@@ -268,36 +272,47 @@ export default {
 	height: 32px;
 	filter: brightness(6%);
 }
+.v-home-page > .-hero > .-links > .-link::before{
+	pointer-events: none;
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: var(--theme-fg--1);
+	border-radius: 50%;
+	will-change: transform;
+	transition: transform 0.1s ease;
+}
+.v-home-page > .-hero > .-links > .-link:hover::before{
+	transform: scale(1.1);
+}
+.v-home-page > .-hero > .-links > .-link:active::before{
+	transform: scale(0.95);
+}
+
 
 .v-home-page > .-hero > .-greetings{
-	margin-bottom: -1.5em;
-}
-.v-home-page > .-hero > .-greetings > .-text{
 	font-size: 24px;
 	font-weight: 700;
 }
-
 .v-home-page > .-hero > .-my-name{
-	/*overflow: hidden;*/
-}
-.v-home-page > .-hero > .-my-name > .-text{
 	font-size: 96px;
 	font-weight: 700;
-	transform: translateY(1em);
-	/*margin-top: 1em;*/
-	/*padding-top: 1em;*/
 }
-
-
 .v-home-page > .-hero > .-subtext{
+	/*opacity: 0.8;*/
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
-	margin-top: -1.5em;
+	/*gap: 0.1em;*/
+
+	font-size: 18px;
+	font-weight: 500;
+	/*margin-top: -1.5em;*/
 }
 .v-home-page > .-hero > .-subtext > .-text{
-	font-size: 20px;
-	font-weight: 500;
 }
 
 
@@ -330,15 +345,6 @@ export default {
 	align-self: center;
 
 	margin: 6em 0;
-}
-
-@keyframes --anim-text-appear-bottom {
-	from {
-
-	}
-	to {
-
-	}
 }
 
 
@@ -377,6 +383,7 @@ export default {
 	flex: 1 0 auto;
 	--v-text-field-2--border-color: var(--theme-fg--1);
 	--v-text-field-2--fg: var(--theme-fg--1);
+	--v-text-field-2--width: calc(100% - 10em);
 }
 
 .v-home-page > .-my-work > .-filters > .-tags{
