@@ -9,37 +9,8 @@
 
 
 <script>
-import {mapActions, mapState} from "vuex";
-
 export default {
    name: 'v-root',
-
-
-	computed: {
-		...mapState('blogPosts', [ 'blogPosts' ])
-	},
-
-
-	async beforeMount() {
-		await this.loadBlogPostsIntoStore();
-	},
-
-
-
-	methods: {
-
-		...mapActions('blogPosts', [ 'loadAllBlogPosts' ]),
-
-
-		async loadBlogPostsIntoStore(){
-			if(!!this.blogPosts?.length)
-				return;
-			await this.loadAllBlogPosts();
-		},
-
-	},
-
-
 }
 </script>
 

@@ -95,16 +95,18 @@
 
 				<div class="-items">
 
-					<div
+					<router-link
 						class="-item"
 						:key="blogPost"
-						v-for="blogPost in blogPosts">
-						<router-link class="-title" :to="{ name: 'blog-post-page', params: { blogPostId: blogPost.id } }" tag="a">{{ blogPost.title }}</router-link>
-						<div class="-preview">
-							<img class="-image" src=""/>
+						v-for="blogPost in blogPosts"
+						:to="{ name: 'blog-post-page', params: { blogPostId: blogPost.id } }"
+						tag="div">
+						<img class="-image" src=""/>
+						<div class="-call">
+							<router-link class="-title" :to="{ name: 'blog-post-page', params: { blogPostId: blogPost.id } }" tag="a">{{ blogPost.title }}</router-link>
 							<span class="-description">Lorem ipsum dolor sit amet</span>
 						</div>
-					</div>
+					</router-link>
 
 				</div>
 
@@ -207,9 +209,15 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	/*background-color: var(--theme-fg--1);*/
 	width: 48px;
 	height: 48px;
+	transition: transform 0.1s ease;
+}
+.v-home-page > .-hero > .-links > .-link:hover{
+	transform: rotateZ(8deg);
+}
+.v-home-page > .-hero > .-links > .-link:active{
+	transform: rotateZ(-8deg);
 }
 .v-home-page > .-hero > .-links > .-link > .-icon{
 	opacity: 0.6;
@@ -247,15 +255,13 @@ export default {
 	font-weight: 700;
 }
 .v-home-page > .-hero > .-subtext{
-	/*opacity: 0.8;*/
+	opacity: 0.7;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
-	/*gap: 0.1em;*/
-
+	gap: 4px;
 	font-size: 18px;
 	font-weight: 500;
-	/*margin-top: -1.5em;*/
 }
 .v-home-page > .-hero > .-subtext > .-text{
 }
@@ -382,8 +388,9 @@ export default {
 	padding: 1em 2em;
 	background-color: #333;
 	border-radius: 4em;
-
 }
+
+
 .v-home-page > .-my-work > .-results > .-items{
 	flex: 1 0 auto;
 	display: flex;
@@ -391,48 +398,56 @@ export default {
 	flex-wrap: wrap;
 	gap: 2em;
 }
+
+
 .v-home-page > .-my-work > .-results > .-items > .-item{
-	width: 250px;
-	height: 300px;
+	width: 280px;
+	height: 340px;
 
-	padding: 18px;
-
-	box-shadow: inset 0 0 0 3px var(--theme-fg--1);
-	border-radius: 18px;
-}
-.v-home-page > .-my-work > .-results > .-items > .-item > .-title{
-	/*display: flex;*/
-	/*flex-direction: row;*/
-	/*align-items: center;*/
-	/*gap: 18px;*/
-	z-index: 1;
-}
-.v-home-page > .-my-work > .-results > .-items > .-item > .-preview{
-	position: absolute;
-
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-}
-.v-home-page > .-my-work > .-results > .-items > .-item > .-preview > .-image{
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
 	border-radius: 18px;
 	overflow: hidden;
-	object-fit: cover;
 }
-.v-home-page > .-my-work > .-results > .-items > .-item > .-preview > .-description{
+.v-home-page > .-my-work > .-results > .-items > .-item::after{
+	pointer-events: none;
+	content: '';
 	position: absolute;
 	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	border-radius: 18px;
+	box-shadow: inset 0 0 0 3px var(--theme-fg--1);
+}
+
+.v-home-page > .-my-work > .-results > .-items > .-item > .-image{
+	flex: 1 0 max-content;
+	object-fit: cover;
+}
+.v-home-page > .-my-work > .-results > .-items > .-item > .-call{
+	position: absolute;
+
+	display: flex;
+	flex-direction: column;
+
+	gap: 0.5em;
+
+	width: 100%;
+
+	max-height: 7em;
 	bottom: 0;
 	left: 0;
 	padding: 18px;
 
-	font-size: 14px;
+	background-color: rgba(0,0,0,0.2);
+}
+.v-home-page > .-my-work > .-results > .-items > .-item > .-call > .-title{
+	color: var(--theme-fg--1);
+	font-weight: 500;
+}
+.v-home-page > .-my-work > .-results > .-items > .-item > .-call > .-description{
+	opacity: 0.8;
+	color: var(--theme-fg--1);
+	font-size: 12px;
 }
 
 </style>

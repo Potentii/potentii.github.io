@@ -16,7 +16,7 @@
 		"clean-parcel-watch": "rimraf \"./out/parcel-watch\"",
 		"clean-parcel-build": "rimraf \"./out/parcel-build\"",
 
-		"parcel-serve": "parcel serve \"./\" --target browserProd --no-autoinstall --dist-dir \"./out/parcel-serve/bundle\" --cache-dir \"./out/parcel-serve/cache\" --port 1234",
+		"parcel-serve": "parcel serve \"./\" --target browserDev --no-autoinstall --dist-dir \"./out/parcel-serve/bundle\" --cache-dir \"./out/parcel-serve/cache\" --port 1234",
 		"parcel-watch": "parcel watch \"./\" --target browserDev --no-autoinstall --dist-dir \"./out/parcel-watch/bundle\" --cache-dir \"./out/parcel-watch/cache\"",
 		"parcel-build": "parcel build \"./\" --target browserProd --no-autoinstall --dist-dir \"./out/parcel-build/bundle\" --cache-dir \"./out/parcel-build/cache\" --no-cache",
 
@@ -37,7 +37,7 @@
 			"isLibrary": false,
 			"optimize": false,
 			"outputFormat": "esmodule",
-			"publicUrl": "./",
+			"publicUrl": "http://localhost:1234",
 			"scopeHoist": false,
 			"source": "./index.html",
 			"sourceMap": true

@@ -16,6 +16,15 @@ const BlogPostsStore = {
 	}),
 
 
+	getters: {
+		/**
+		 *
+		 * @param state
+		 * @return {(string) => ?BlogPost}
+		 */
+		getBlogPostById: state => blogPostId => state.blogPosts.find(blogPost => blogPost.id == blogPostId),
+	},
+
 
 	mutations: {
 

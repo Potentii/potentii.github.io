@@ -1,7 +1,7 @@
 <template>
 	<div class="v-blog-post-page --thin-scroll --large">
 
-		Blog Post
+		<span class="-title">{{ blogPost?.title }}</span>
 
 	</div>
 </template>
@@ -10,9 +10,41 @@
 
 <script>
 
+import {mapGetters} from "vuex";
+
 export default {
 
    name: 'v-blog-post-page',
+
+
+	data(){
+		return {
+			/**
+			 * @type {?BlogPost}
+			 */
+			blogPost: null,
+		};
+	},
+
+
+	computed: {
+		...mapGetters('blogPosts', [ 'getBlogPostById' ]),
+	},
+
+
+	async beforeMount() {
+		const blogPostId = this.$route.params.blogPostId;
+		if(!blogPostId)
+			throw new Error(`Coud not load blog post: ID not set`);
+
+		const blogPost = this.getBlogPostById(blogPostId);
+		if(!blogPost) {
+			await this.$router.replace({ name: 'not-found-page', query: { 'p': this.$route.path }  })
+			return;
+		}
+
+		this.blogPost = blogPost;
+	}
 
 }
 </script>
