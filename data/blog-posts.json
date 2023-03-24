@@ -1,0 +1,15 @@
+[
+	{
+		"data": {
+			"id": "31dw23j60s",
+			"title": "Initial blog post",
+			"tags": ["Software Development", "UI/UX"]
+		},
+		"_links": {
+			"blogPostContent": {
+				"method": "GET",
+				"path": "/data/blog-posts/31dw23j60s.md"
+			}
+		}
+	}
+]
