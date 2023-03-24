@@ -31,6 +31,7 @@ jobs:
          -  run: npm run clean-parcel-build
          -  run: npm run parcel-build
          -  run: npm run dist-data-build
+         -  run: npm run 404-dist-build
 
          -  name: Dist to gh-pages
             uses: peaceiris/actions-gh-pages@v3

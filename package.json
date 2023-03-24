@@ -10,7 +10,7 @@
 	"bugs": {
 		"url": "https://github.com/Potentii/potentii.github.io/issues"
 	},
-	"homepage": "https://github.com/Potentii/potentii.github.io",
+	"homepage": "https://potentii.com",
 	"scripts": {
 		"clean-parcel-serve": "rimraf \"./out/parcel-serve\"",
 		"clean-parcel-watch": "rimraf \"./out/parcel-watch\"",
@@ -20,6 +20,7 @@
 		"parcel-watch": "parcel watch \"./\" --target browserDev --no-autoinstall --dist-dir \"./out/parcel-watch/bundle\" --cache-dir \"./out/parcel-watch/cache\"",
 		"parcel-build": "parcel build \"./\" --target browserProd --no-autoinstall --dist-dir \"./out/parcel-build/bundle\" --cache-dir \"./out/parcel-build/cache\" --no-cache",
 
+		"404-dist-build": "rimraf \"./out/parcel-build/bundle/browserProd/build-temp\" && copyfiles -u 4 \"./out/parcel-build/bundle/browserProd/index.html\" \"./out/parcel-build/bundle/browserProd/build-temp\" && renamer -f \"index.html\" -r \"404.html\" \"./out/parcel-build/bundle/browserProd/build-temp/*\" && copyfiles -u 5 \"./out/parcel-build/bundle/browserProd/build-temp/404.html\" \"./out/parcel-build/bundle/browserProd\" && rimraf \"./out/parcel-build/bundle/browserProd/build-temp\"",
 
 		"clean-dist-data-serve": "rimraf \"./out/parcel-serve/bundle/data\"",
 		"clean-dist-data-watch": "rimraf \"./out/parcel-watch/bundle/data\"",
@@ -46,7 +47,7 @@
 			"isLibrary": false,
 			"optimize": true,
 			"outputFormat": "esmodule",
-			"publicUrl": "./",
+			"publicUrl": "https://potentii.com",
 			"scopeHoist": false,
 			"source": "./index.html",
 			"sourceMap": false
@@ -95,6 +96,7 @@
 		"parcel": "2.8.3",
 		"rimraf": "3.0.2",
 		"copyfiles": "2.4.1",
+		"renamer": "4.0.0",
 		"vue-hot-reload-api": "2.3.4",
 		"vue-template-compiler": "2.6.14"
 	}
