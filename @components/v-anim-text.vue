@@ -21,13 +21,13 @@ export default {
 	props: {
 
 		duration: {
-			type: Number,
+			type: [Number,String],
 			required: false,
 			default: 0.5,
 		},
 
 		delay: {
-			type: Number,
+			type: [Number,String],
 			required: false,
 			default: 0,
 		},

@@ -95,72 +95,15 @@
 
 				<div class="-items">
 
-					<div class="-item">
-
-						<div class="-title">
-
-							<div class="-icon"></div>
-
-							<span class="-text">Lorem ipsum</span>
-
-						</div>
-
+					<div
+						class="-item"
+						:key="blogPost"
+						v-for="blogPost in blogPosts">
+						<router-link class="-title" :to="{ name: 'blog-post-page', params: { blogPostId: blogPost.id } }" tag="a">{{ blogPost.title }}</router-link>
 						<div class="-preview">
 							<img class="-image" src=""/>
 							<span class="-description">Lorem ipsum dolor sit amet</span>
 						</div>
-
-					</div>
-
-					<div class="-item">
-
-						<div class="-title">
-
-							<div class="-icon"></div>
-
-							<span class="-text">Lorem ipsum</span>
-
-						</div>
-
-						<div class="-preview">
-							<img class="-image" src=""/>
-							<span class="-description">Lorem ipsum dolor sit amet</span>
-						</div>
-
-					</div>
-
-					<div class="-item">
-
-						<div class="-title">
-
-							<div class="-icon"></div>
-
-							<span class="-text">Lorem ipsum</span>
-
-						</div>
-
-						<div class="-preview">
-							<img class="-image" src=""/>
-							<span class="-description">Lorem ipsum dolor sit amet</span>
-						</div>
-
-					</div>
-
-					<div class="-item">
-
-						<div class="-title">
-
-							<div class="-icon"></div>
-
-							<span class="-text">Lorem ipsum</span>
-
-						</div>
-
-						<div class="-preview">
-							<img class="-image" src=""/>
-							<span class="-description">Lorem ipsum dolor sit amet</span>
-						</div>
-
 					</div>
 
 				</div>
@@ -179,12 +122,20 @@
 import VButton from "../@components/v-button.vue";
 import VTextField2 from "../@components/v-text-field-2.vue";
 import VAnimText from "../@components/v-anim-text.vue";
+import {mapState} from "vuex";
 
 export default {
 
    name: 'v-home-page',
 
+
 	components: {VAnimText, VTextField2, VButton},
+
+
+	computed: {
+		...mapState('blogPosts', [ 'blogPosts' ]),
+	},
+
 
 }
 </script>
@@ -450,22 +401,11 @@ export default {
 	border-radius: 18px;
 }
 .v-home-page > .-my-work > .-results > .-items > .-item > .-title{
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: 18px;
+	/*display: flex;*/
+	/*flex-direction: row;*/
+	/*align-items: center;*/
+	/*gap: 18px;*/
 	z-index: 1;
-}
-.v-home-page > .-my-work > .-results > .-items > .-item > .-title > .-icon{
-	flex: 0 0 auto;
-	width: 32px;
-	height: 32px;
-	background-color: var(--theme-fg--1);
-	border-radius: 50%;
-}
-.v-home-page > .-my-work > .-results > .-items > .-item > .-title > .-text{
-	flex: 1 0 auto;
-
 }
 .v-home-page > .-my-work > .-results > .-items > .-item > .-preview{
 	position: absolute;

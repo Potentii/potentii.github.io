@@ -12,10 +12,22 @@
 	},
 	"homepage": "https://github.com/Potentii/potentii.github.io",
 	"scripts": {
-		"parcel-serve": "rimraf \"./out/parcel-serve\" && parcel serve \"./\" --target browserDev --no-autoinstall --dist-dir \"./out/parcel-serve/bundle\" --cache-dir \"./out/parcel-serve/cache\" --port 1234",
-		"parcel-watch": "rimraf \"./out/parcel-watch\" && parcel watch \"./\" --target browserDev --no-autoinstall --dist-dir \"./out/parcel-watch/bundle\" --cache-dir \"./out/parcel-watch/cache\"",
-		"parcel-build": "rimraf \"./out/parcel-build\" && parcel build \"./\" --target browserDev --no-autoinstall --dist-dir \"./out/parcel-build/bundle\" --cache-dir \"./out/parcel-build/cache\" --no-cache",
-		"dist-data": "rimraf \"./out/parcel-build/bundle/data\" && copyfiles -u 1 \"./data/**/*\" \"./out/parcel-build/bundle\""
+		"clean-parcel-serve": "rimraf \"./out/parcel-serve\"",
+		"clean-parcel-watch": "rimraf \"./out/parcel-watch\"",
+		"clean-parcel-build": "rimraf \"./out/parcel-build\"",
+
+		"parcel-serve": "parcel serve \"./\" --target browserProd --no-autoinstall --dist-dir \"./out/parcel-serve/bundle\" --cache-dir \"./out/parcel-serve/cache\" --port 1234",
+		"parcel-watch": "parcel watch \"./\" --target browserDev --no-autoinstall --dist-dir \"./out/parcel-watch/bundle\" --cache-dir \"./out/parcel-watch/cache\"",
+		"parcel-build": "parcel build \"./\" --target browserProd --no-autoinstall --dist-dir \"./out/parcel-build/bundle\" --cache-dir \"./out/parcel-build/cache\" --no-cache",
+
+
+		"clean-dist-data-serve": "rimraf \"./out/parcel-serve/bundle/data\"",
+		"clean-dist-data-watch": "rimraf \"./out/parcel-watch/bundle/data\"",
+		"clean-dist-data-build": "rimraf \"./out/parcel-build/bundle/browserProd/data\"",
+
+		"dist-data-serve": "copyfiles -u 0 \"./data/**/*\" \"./out/parcel-serve/bundle\"",
+		"dist-data-watch": "copyfiles -u 0 \"./data/**/*\" \"./out/parcel-watch/bundle\"",
+		"dist-data-build": "copyfiles -u 0 \"./data/**/*\" \"./out/parcel-build/bundle/browserProd\""
 	},
 
 	"targets": {
@@ -28,6 +40,16 @@
 			"scopeHoist": false,
 			"source": "./index.html",
 			"sourceMap": true
+		},
+		"browserProd": {
+			"context": "browser",
+			"isLibrary": false,
+			"optimize": true,
+			"outputFormat": "esmodule",
+			"publicUrl": "./",
+			"scopeHoist": false,
+			"source": "./index.html",
+			"sourceMap": false
 		}
 	},
 

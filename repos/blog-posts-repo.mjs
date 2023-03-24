@@ -11,7 +11,7 @@ export default class BlogPostsRepo{
 	 */
 	static async getAll(){
 		const response = await axios.get(`/data/blog-posts.json`);
-		return JSON.parse(response.data)
+		return response.data
 			.map(envelope => envelope.data)
 			.map(BlogPost.from)
 	}
