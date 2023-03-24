@@ -32,16 +32,10 @@
 
 			<v-anim-text class="-my-name" delay="1.6" duration="1">Guilherme</v-anim-text>
 
-
 			<div class="-subtext">
 				<v-anim-text class="-row" delay="2.4" duration="0.8" direction="fromRight">Software developer</v-anim-text>
 				<v-anim-text class="-row" delay="2.8" duration="0.8" direction="fromRight">3D artist</v-anim-text>
 				<v-anim-text class="-row" delay="3.2" duration="0.8" direction="fromRight">UI/UX designer</v-anim-text>
-
-
-<!--				<span class="-row"></span>-->
-<!--				<span class="-row"></span>-->
-<!--				<span class="-row"></span>-->
 			</div>
 
 			<div class="-photo">

@@ -1,7 +1,7 @@
 // *Vue:
 import {createApp} from 'vue';
 // *Vue integrations:
-import store from './store.mjs';
+import store from './stores/store.mjs';
 import router from './router.mjs';
 // *Custom plugins:
 import VLog from './cross/plugins/log.mjs';
