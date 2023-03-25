@@ -8,6 +8,7 @@ const BlogPostsStore = {
 	namespaced: true,
 
 
+
 	state: () => ({
 		/**
 		 * @type {BlogPost[]}
@@ -16,14 +17,25 @@ const BlogPostsStore = {
 	}),
 
 
+
 	getters: {
+
 		/**
 		 *
 		 * @param state
 		 * @return {(string) => ?BlogPost}
 		 */
 		getBlogPostById: state => blogPostId => state.blogPosts.find(blogPost => blogPost.id == blogPostId),
+
+		/**
+		 *
+		 * @param state
+		 * @return {function(): string[]}
+		 */
+		allTags: state => () => [...new Set(state.blogPosts.flatMap(blogPost => blogPost.tags))],
+
 	},
+
 
 
 	mutations: {
@@ -51,7 +63,6 @@ const BlogPostsStore = {
 		},
 
 	},
-
 
 };
 

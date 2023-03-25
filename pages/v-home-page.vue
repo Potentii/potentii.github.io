@@ -45,7 +45,7 @@
 		</section>
 
 
-		<div class="-separator"></div>
+		<v-separator class="-separator"></v-separator>
 
 
 		<!-- * My Work section * -->
@@ -66,22 +66,11 @@
 
 				<div class="-tags">
 
-					<div class="-tag">
-						<div class="-icon"></div>
-						<span class="-title">Software</span>
-					</div>
-					<div class="-tag">
-						<div class="-icon"></div>
-						<span class="-title">3D art</span>
-					</div>
-					<div class="-tag">
-						<div class="-icon"></div>
-						<span class="-title">Articles</span>
-					</div>
-					<div class="-tag">
-						<div class="-icon"></div>
-						<span class="-title">UI/UX</span>
-					</div>
+					<v-tag
+						class="-tag"
+						:name="tag"
+						v-for="tag in allTags()">
+					</v-tag>
 
 				</div>
 
@@ -124,18 +113,28 @@
 import VButton from "../@components/v-button.vue";
 import VTextField2 from "../@components/v-text-field-2.vue";
 import VAnimText from "../@components/v-anim-text.vue";
-import {mapState} from "vuex";
+import {mapGetters, mapState} from "vuex";
+import VSeparator from "../@components/v-separator.vue";
+import VTag from "../@components/v-tag.vue";
 
 export default {
 
    name: 'v-home-page',
 
 
-	components: {VAnimText, VTextField2, VButton},
+	components: {VTag, VSeparator, VAnimText, VTextField2, VButton},
+
+
+	data(){
+		return {
+			tags: [],
+		};
+	},
 
 
 	computed: {
 		...mapState('blogPosts', [ 'blogPosts' ]),
+		...mapGetters('blogPosts', [ 'allTags' ]),
 	},
 
 
@@ -290,9 +289,6 @@ export default {
 	min-width: 30em;
 	width: calc(70vw - calc(var(--var-h-min-padding) * 2));
 	max-width: calc(100vw - 10em);
-	height: 8px;
-	background-color: var(--theme-fg--1);
-	border-radius: 100px;
 	align-self: center;
 
 	margin: 6em 0;
@@ -348,28 +344,31 @@ export default {
 }
 .v-home-page > .-my-work > .-filters > .-tags > .-tag{
 	flex: 1 0 auto;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: 8px;
+}
+/*.v-home-page > .-my-work > .-filters > .-tags > .-tag{*/
+/*	flex: 1 0 auto;*/
+/*	display: flex;*/
+/*	flex-direction: row;*/
+/*	align-items: center;*/
+/*	gap: 8px;*/
 
-	/*width: 150px;*/
-	height: 40px;
-	box-shadow: inset 0 0 0 3px var(--theme-fg--1);
-	border-radius: 100px;
-	padding: 0 32px 0 10px;
-}
-.v-home-page > .-my-work > .-filters > .-tags > .-tag > .-icon{
-	flex: 1 0 auto;
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	background-color: var(--theme-fg--1);
-}
-.v-home-page > .-my-work > .-filters > .-tags > .-tag > .-title{
-	flex: 1 0 auto;
+/*	!*width: 150px;*!*/
+/*	height: 40px;*/
+/*	box-shadow: inset 0 0 0 3px var(--theme-fg--1);*/
+/*	border-radius: 100px;*/
+/*	padding: 0 32px 0 10px;*/
+/*}*/
+/*.v-home-page > .-my-work > .-filters > .-tags > .-tag > .-icon{*/
+/*	flex: 1 0 auto;*/
+/*	width: 20px;*/
+/*	height: 20px;*/
+/*	border-radius: 50%;*/
+/*	background-color: var(--theme-fg--1);*/
+/*}*/
+/*.v-home-page > .-my-work > .-filters > .-tags > .-tag > .-title{*/
+/*	flex: 1 0 auto;*/
 
-}
+/*}*/
 
 
 .v-home-page > .-my-work > .-results{
