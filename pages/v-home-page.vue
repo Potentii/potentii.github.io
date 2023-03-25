@@ -1,10 +1,13 @@
 <template>
 	<div class="v-home-page --thin-scroll --large">
 
+		<v-page-bg class="-page-bg"></v-page-bg>
+
 
 		<!-- * Hero section * -->
 		<section class="-hero">
 
+			<!-- * Profile links * -->
 			<div class="-links">
 				<a class="-link -artstation" href="https://www.artstation.com/potentii" title="Artstation profile">
 					<img class="-icon" src="../assets/images/icons/artstation-logo.svg"/>
@@ -26,6 +29,7 @@
 				</a>
 			</div>
 
+			<!-- * Greetings * -->
 			<div class="-greetings">
 				<v-anim-text delay="0.1" duration="0.3">Hi, </v-anim-text><v-anim-text delay="1.0" duration="0.2">my </v-anim-text><v-anim-text delay="1.1" duration="0.2">name </v-anim-text><v-anim-text delay="1.3" duration="0.2">is</v-anim-text>
 			</div>
@@ -38,6 +42,7 @@
 				<v-anim-text class="-row" delay="3.2" duration="0.8" direction="fromRight">UI/UX designer</v-anim-text>
 			</div>
 
+			<!-- * Main photo * -->
 			<div class="-photo">
 				<img class="-image" src="../assets/images/my_photo_hero_001.png"/>
 			</div>
@@ -45,6 +50,7 @@
 		</section>
 
 
+		<!-- * Separator * -->
 		<v-separator class="-separator"></v-separator>
 
 
@@ -55,6 +61,7 @@
 
 			<div class="-filters">
 
+				<!-- * Search bar * -->
 				<v-text-field2
 					class="-search"
 					placeholder="Search projects..."
@@ -64,45 +71,34 @@
 					icon-to-right>
 				</v-text-field2>
 
-				<div class="-tags">
 
+				<!-- * Tags filter * -->
+				<div class="-tags">
 					<v-tag
 						class="-tag"
 						:name="tag"
 						v-for="tag in allTags()">
 					</v-tag>
-
 				</div>
 
 			</div>
 
 
-
+			<!-- * Blog Posts results * -->
 			<div class="-results">
 
-				<span class="-empty">No projects found</span>
+				<span class="-empty" v-if="!filteredBlogPosts.length">No projects found</span>
 
 				<div class="-items">
-
-					<router-link
-						class="-item"
-						:key="blogPost"
-						v-for="blogPost in blogPosts"
-						:to="{ name: 'blog-post-page', params: { blogPostId: blogPost.id } }"
-						tag="div">
-						<img class="-image" src=""/>
-						<div class="-call">
-							<router-link class="-title" :to="{ name: 'blog-post-page', params: { blogPostId: blogPost.id } }" tag="a">{{ blogPost.title }}</router-link>
-							<span class="-description">Lorem ipsum dolor sit amet</span>
-						</div>
-					</router-link>
-
+					<v-blog-post-list-item class="-item" :blog-post="blogPost" :key="blogPost.id" v-for="blogPost in filteredBlogPosts"></v-blog-post-list-item>
 				</div>
 
 			</div>
 
 		</section>
 
+
+		<v-copyrights-notice class="-copyrights"></v-copyrights-notice>
 
 	</div>
 </template>
@@ -116,13 +112,19 @@ import VAnimText from "../@components/v-anim-text.vue";
 import {mapGetters, mapState} from "vuex";
 import VSeparator from "../@components/v-separator.vue";
 import VTag from "../@components/v-tag.vue";
+import VBlogPostListItem from "../@components/v-blog-post-list-item.vue";
+import VCopyrightsNotice from "../@components/v-copyrights-notice.vue";
+import VAnimTriangle from "../@components/v-anim-triangle.vue";
+import VPageBg from "../@components/v-page-bg.vue";
 
 export default {
 
    name: 'v-home-page',
 
 
-	components: {VTag, VSeparator, VAnimText, VTextField2, VButton},
+	components: {
+		VPageBg,
+		VAnimTriangle, VCopyrightsNotice, VBlogPostListItem, VTag, VSeparator, VAnimText, VTextField2, VButton},
 
 
 	data(){
@@ -135,6 +137,14 @@ export default {
 	computed: {
 		...mapState('blogPosts', [ 'blogPosts' ]),
 		...mapGetters('blogPosts', [ 'allTags' ]),
+
+		/**
+		 *
+		 * @return {BlogPost[]}
+		 */
+		filteredBlogPosts(){
+			return this.blogPosts.filter(blogPost => true);
+		},
 	},
 
 
@@ -147,6 +157,8 @@ export default {
 .v-home-page{
 	--var-h-min-padding: 5vh;
 
+	/*flex: 1 0 min-content;*/
+
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
@@ -156,7 +168,7 @@ export default {
 	overflow-x: hidden;
 	width: 100%;
 
-	padding-bottom: 10em;
+	/*padding-bottom: 10em;*/
 }
 
 
@@ -205,6 +217,7 @@ export default {
 	gap: 12px;
 }
 .v-home-page > .-hero > .-links > .-link{
+	user-select: none;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -345,30 +358,6 @@ export default {
 .v-home-page > .-my-work > .-filters > .-tags > .-tag{
 	flex: 1 0 auto;
 }
-/*.v-home-page > .-my-work > .-filters > .-tags > .-tag{*/
-/*	flex: 1 0 auto;*/
-/*	display: flex;*/
-/*	flex-direction: row;*/
-/*	align-items: center;*/
-/*	gap: 8px;*/
-
-/*	!*width: 150px;*!*/
-/*	height: 40px;*/
-/*	box-shadow: inset 0 0 0 3px var(--theme-fg--1);*/
-/*	border-radius: 100px;*/
-/*	padding: 0 32px 0 10px;*/
-/*}*/
-/*.v-home-page > .-my-work > .-filters > .-tags > .-tag > .-icon{*/
-/*	flex: 1 0 auto;*/
-/*	width: 20px;*/
-/*	height: 20px;*/
-/*	border-radius: 50%;*/
-/*	background-color: var(--theme-fg--1);*/
-/*}*/
-/*.v-home-page > .-my-work > .-filters > .-tags > .-tag > .-title{*/
-/*	flex: 1 0 auto;*/
-
-/*}*/
 
 
 .v-home-page > .-my-work > .-results{
@@ -397,56 +386,4 @@ export default {
 	flex-wrap: wrap;
 	gap: 2em;
 }
-
-
-.v-home-page > .-my-work > .-results > .-items > .-item{
-	width: 280px;
-	height: 340px;
-
-	border-radius: 18px;
-	overflow: hidden;
-}
-.v-home-page > .-my-work > .-results > .-items > .-item::after{
-	pointer-events: none;
-	content: '';
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	border-radius: 18px;
-	box-shadow: inset 0 0 0 3px var(--theme-fg--1);
-}
-
-.v-home-page > .-my-work > .-results > .-items > .-item > .-image{
-	flex: 1 0 max-content;
-	object-fit: cover;
-}
-.v-home-page > .-my-work > .-results > .-items > .-item > .-call{
-	position: absolute;
-
-	display: flex;
-	flex-direction: column;
-
-	gap: 0.5em;
-
-	width: 100%;
-
-	max-height: 7em;
-	bottom: 0;
-	left: 0;
-	padding: 18px;
-
-	background-color: rgba(0,0,0,0.2);
-}
-.v-home-page > .-my-work > .-results > .-items > .-item > .-call > .-title{
-	color: var(--theme-fg--1);
-	font-weight: 500;
-}
-.v-home-page > .-my-work > .-results > .-items > .-item > .-call > .-description{
-	opacity: 0.8;
-	color: var(--theme-fg--1);
-	font-size: 12px;
-}
-
 </style>

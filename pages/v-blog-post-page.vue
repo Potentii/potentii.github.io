@@ -1,19 +1,18 @@
 <template>
 	<div class="v-blog-post-page --thin-scroll --large">
 
+		<v-page-bg class="-page-bg"></v-page-bg>
+
 		<div class="-main">
 
-			<span class="-kind">Blog Post</span>
+			<span class="-kind --ui-label">Blog Post</span>
 
 
 			<header class="-title">{{ blogPost?.title }}</header>
 
 
 			<section class="-authors">
-				<div class="-author">
-					<img class="-thumb" src="../assets/images/my_photo_thumb_001.jpeg"/>
-					<span class="-name">Guilherme Reginaldo Ruella</span>
-				</div>
+				<v-author class="-author"></v-author>
 			</section>
 
 
@@ -23,8 +22,8 @@
 			<v-separator class="-separator"></v-separator>
 
 
-			<section class="-tags-section">
-				<span class="-title">Tags</span>
+			<section class="-tags-section" v-if="blogPost">
+				<span class="-title --ui-label">Tags</span>
 				<div class="-tags">
 					<v-tag
 						class="-tag"
@@ -35,6 +34,9 @@
 			</section>
 
 		</div>
+
+
+		<v-copyrights-notice class="-copyrights"></v-copyrights-notice>
 
 	</div>
 </template>
@@ -48,6 +50,9 @@ import VSeparator from "../@components/v-separator.vue";
 import VTag from "../@components/v-tag.vue";
 import marked from "marked";
 import * as DOMPurify from 'dompurify';
+import VAuthor from "../@components/v-author.vue";
+import VCopyrightsNotice from "../@components/v-copyrights-notice.vue";
+import VPageBg from "../@components/v-page-bg.vue";
 
 
 export default {
@@ -55,7 +60,7 @@ export default {
    name: 'v-blog-post-page',
 
 
-	components: {VTag, VSeparator},
+	components: {VPageBg, VCopyrightsNotice, VAuthor, VTag, VSeparator},
 
 
 	data(){
@@ -115,6 +120,8 @@ export default {
 .v-blog-post-page{
 	--var-h-min-padding: 5vh;
 
+	/*flex: 1 1 auto;*/
+
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -123,8 +130,9 @@ export default {
 	overflow-x: hidden;
 	width: 100%;
 
-	/*padding-bottom: 10em;*/
-	padding: 4em var(--var-h-min-padding) 10em var(--var-h-min-padding);
+	padding-top: 4em;
+
+	/*padding: 4em var(--var-h-min-padding) 10em var(--var-h-min-padding);*/
 }
 
 .v-blog-post-page > .-main{
@@ -132,7 +140,7 @@ export default {
 	flex-direction: column;
 	align-items: stretch;
 
-	max-width: 75em;
+	max-width: 55em;
 }
 
 
@@ -143,7 +151,7 @@ export default {
  * ==========================================
  */
 .v-blog-post-page > .-main > .-kind{
-	opacity: 0.2;
+	opacity: 0.3;
 	font-size: 32px;
 	font-weight: 700;
 
@@ -174,6 +182,7 @@ export default {
  * ==========================================
  */
 .v-blog-post-page > .-main > .-authors{
+	cursor: default;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -183,38 +192,7 @@ export default {
 
 	margin-bottom: 16px;
 }
-.v-blog-post-page > .-main > .-authors > .-author{
-	display: flex;
-	flex-direction: row;
-	align-items: center;
 
-	gap: 12px;
-
-	height: 40px;
-	border-radius: 100px;
-	padding: 0 16px 0 6px;
-	overflow: hidden;
-}
-.v-blog-post-page > .-main > .-authors > .-author::before{
-	opacity: 0.2;
-	pointer-events: none;
-	content: '';
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	background-color: var(--theme-fg--1);
-}
-.v-blog-post-page > .-main > .-authors > .-author > .-thumb{
-	width: 28px;
-	height: 28px;
-	object-fit: cover;
-	border-radius: 50%;
-}
-.v-blog-post-page > .-main > .-authors > .-author > .-name{
-	font-size: 14px;
-}
 
 
 

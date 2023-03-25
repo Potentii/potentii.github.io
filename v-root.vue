@@ -349,6 +349,8 @@ html, body, #app{
 	--transparent-black: rgba(0,0,0,0.06);
 
 	--theme-fg--1: #F0E4F4;
+	--theme-fg--2: #C9B1E8;
+
 	--theme-bg--1: #101010;
 
 
@@ -504,6 +506,18 @@ html, body, #app{
 	border-radius: var(--border-radius--large);
 	border: 2px solid #262626;
 	box-shadow: 2px 4px 16px 0 rgba(0,0,0,0.25);
+}
+
+
+.v-root .--ui-label{
+	pointer-events: none;
+	user-select: none;
+}
+.v-root .--ui-not-interactable{
+	pointer-events: none;
+}
+.v-root .--ui-not-selectable{
+	user-select: none;
 }
 
 </style>
