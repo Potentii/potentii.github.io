@@ -27,7 +27,7 @@ export default {
 
 	height: 40px;
 	border-radius: 100px;
-	padding: 0 16px 0 6px;
+	padding: 0 24px 0 6px;
 	overflow: hidden;
 }
 .v-author::before{

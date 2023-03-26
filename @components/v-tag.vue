@@ -33,16 +33,16 @@ export default {
 	align-items: center;
 	gap: 8px;
 
-	height: 32px;
+	height: 40px;
 
 	box-shadow: inset 0 0 0 2px var(--theme-fg--1);
 	border-radius: 300px;
-	padding: 0 24px 0 8px;
+	padding: 0 24px 0 10px;
 }
 .v-tag > .-icon{
 	flex: 0 0 auto;
-	width: 16px;
-	height: 16px;
+	width: 18px;
+	height: 18px;
 	border-radius: 50%;
 	background-color: var(--theme-fg--1);
 }

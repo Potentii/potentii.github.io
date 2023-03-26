@@ -57,7 +57,7 @@
 		<!-- * My Work section * -->
 		<section class="-my-work">
 
-			<span class="-title">My Work</span>
+			<span class="-title --ui-label">My Work</span>
 
 			<div class="-filters">
 

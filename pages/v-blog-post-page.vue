@@ -130,9 +130,7 @@ export default {
 	overflow-x: hidden;
 	width: 100%;
 
-	padding-top: 4em;
-
-	/*padding: 4em var(--var-h-min-padding) 10em var(--var-h-min-padding);*/
+	padding: 4em var(--var-h-min-padding) 0 var(--var-h-min-padding);
 }
 
 .v-blog-post-page > .-main{

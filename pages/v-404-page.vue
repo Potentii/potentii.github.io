@@ -3,6 +3,7 @@
 
 		<v-page-bg class="-page-bg"></v-page-bg>
 
+
 		<div class="-main">
 
 			<span class="-not-found --ui-not-selectable">Content not found</span>
@@ -24,8 +25,11 @@ import VCopyrightsNotice from "../@components/v-copyrights-notice.vue";
 import VPageBg from "../@components/v-page-bg.vue";
 
 export default {
+
    name: 'v-404-page',
+
 	components: {VPageBg, VCopyrightsNotice},
+
 }
 </script>
 
@@ -45,17 +49,16 @@ export default {
 	overflow-y: auto;
 	overflow-x: hidden;
 	width: 100%;
-	/*min-height: 100%;*/
 
-	padding-top: 20vh;
-
-	/*padding: 20vh var(--var-h-min-padding) 10em var(--var-h-min-padding);*/
+	padding: 20vh var(--var-h-min-padding) 0 var(--var-h-min-padding);
 }
 
 .v-404-page > .-main{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
+	gap: 1em;
 }
 .v-404-page > .-main > .-not-found{
 	font-size: 48px;
@@ -65,7 +68,7 @@ export default {
 	font-size: 250px;
 	font-weight: 900;
 	color: var(--theme-fg--2);
-	padding: 16px 128px;
+	padding: 0 128px;
 }
 .v-404-page > .-main > .-four-o-four::before{
 	content: '';
