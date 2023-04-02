@@ -90,7 +90,12 @@
 				<span class="-empty" v-if="!filteredBlogPosts.length">No projects found</span>
 
 				<div class="-items">
-					<v-blog-post-list-item class="-item" :blog-post="blogPost" :key="blogPost.id" v-for="blogPost in filteredBlogPosts"></v-blog-post-list-item>
+					<v-blog-post-list-item
+						class="-item"
+						:blog-post="blogPost"
+						:key="blogPost.id"
+						v-for="blogPost in filteredBlogPosts">
+					</v-blog-post-list-item>
 				</div>
 
 			</div>

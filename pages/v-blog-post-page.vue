@@ -5,7 +5,18 @@
 
 		<div class="-main">
 
-			<span class="-kind --ui-label">Blog Post</span>
+			<div class="-page-type">
+				<v-button
+					class="-back"
+					icon="arrow_back"
+					v-if="false"
+					:to-page="{ name: 'home-page' }"
+					round
+					size-l
+					dont-focus-on-click>
+				</v-button>
+				<span class="-kind --ui-label">Blog Post</span>
+			</div>
 
 
 			<header class="-title">{{ blogPost?.title }}</header>
@@ -53,6 +64,7 @@ import * as DOMPurify from 'dompurify';
 import VAuthor from "../@components/v-author.vue";
 import VCopyrightsNotice from "../@components/v-copyrights-notice.vue";
 import VPageBg from "../@components/v-page-bg.vue";
+import VButton from "../@components/v-button.vue";
 
 
 export default {
@@ -60,7 +72,7 @@ export default {
    name: 'v-blog-post-page',
 
 
-	components: {VPageBg, VCopyrightsNotice, VAuthor, VTag, VSeparator},
+	components: {VButton, VPageBg, VCopyrightsNotice, VAuthor, VTag, VSeparator},
 
 
 	data(){
@@ -96,7 +108,7 @@ export default {
 
 
 	async beforeMount() {
-		const blogPostId = this.$route.params.blogPostId;
+		const blogPostId = /^(.+?)(-.*)?$/i.exec(this.$route.params.blogPostId)[1];
 		if(!blogPostId)
 			throw new Error(`Coud not load blog post: ID not set`);
 
@@ -145,17 +157,26 @@ export default {
 
 /*
  * ==========================================
- * Kind
+ * Page type
  * ==========================================
  */
-.v-blog-post-page > .-main > .-kind{
-	opacity: 0.3;
-	font-size: 32px;
-	font-weight: 700;
+.v-blog-post-page > .-main > .-page-type{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 1em;
 
 	margin-bottom: 8px;
 }
-
+.v-blog-post-page > .-main > .-page-type > .-back{
+	--v-button--fg: var(--theme-fg--1);
+	--v-button--bg: var(--theme-bg--1);
+}
+.v-blog-post-page > .-main > .-page-type > .-kind{
+	opacity: 0.3;
+	font-size: 32px;
+	font-weight: 700;
+}
 
 
 /*

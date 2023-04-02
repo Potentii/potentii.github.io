@@ -1,5 +1,5 @@
 <template>
-	<button
+	<component
 		class="v-button"
 		:class="{
 			'--capsule': !!capsule,
@@ -13,6 +13,8 @@
 			'--italic': !!italic,
 			'--uppercase': !!uppercase,
 
+			'--is-link': !!isLink,
+
 			'--size-xxs': !!sizeXxs,
 			'--size-xs': !!sizeXs,
 			'--size-s': !!sizeS,
@@ -22,14 +24,16 @@
 
 			'--unit-ratio': is_unit_ratio,
 	 	}"
+		:is="component"
 		@mousedown="_onMouseDown($event)"
 		:type="type"
 		:title="title"
-		:disabled="disabled">
+		:disabled="disabled"
+		:to="toPage">
 		<v-loading-spinner class="-loading" v-if="loading"></v-loading-spinner>
 		<i class="-icon material-icons" v-else-if="icon && !loading">{{ icon }}</i>
 		<span class="-text" v-if="text">{{ text }}</span>
-	</button>
+	</component>
 </template>
 
 
@@ -57,6 +61,11 @@ export default {
 
 		icon: {
 			type: String,
+			required: false
+		},
+
+		toPage: {
+			type: Object,
 			required: false
 		},
 
@@ -208,12 +217,24 @@ export default {
 
 
 	computed: {
+
+		isLink(){
+			return !!this.toPage;
+		},
+
 		is_unit_ratio(){
 			return !this.text;
 		},
 
 		computed_outline_interaction(){
 			return this.outlineInteraction || this.outline;
+		},
+
+		component(){
+			if(this.toPage)
+				return 'router-link';
+
+			return 'button';
 		},
 	},
 

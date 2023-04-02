@@ -1,14 +1,14 @@
 <template>
 	<router-link
 		class="v-blog-post-list-item"
-		:to="{ name: 'blog-post-page', params: { blogPostId: blogPost.id } }"
+		:to="{ name: 'blog-post-page', params: { blogPostId: blogPostUrlId } }"
 		tag="div">
 
 		<img class="-image" v-if="blogPost.previewImageUrl?.trim().length" :src="blogPost.previewImageUrl"/>
 
 		<div class="-call">
 
-			<router-link class="-title" :to="{ name: 'blog-post-page', params: { blogPostId: blogPost.id } }" tag="a">{{ blogPost.title }}</router-link>
+			<router-link class="-title" :to="{ name: 'blog-post-page', params: { blogPostId: blogPostUrlId } }" tag="a">{{ blogPost.title }}</router-link>
 
 			<span class="-description" v-if="blogPost.description">{{ blogPost.description }}</span>
 
@@ -35,6 +35,18 @@ export default {
 			type: BlogPost,
 			required: true,
 		},
+	},
+
+
+	computed: {
+
+		/**
+		 * @return {string}
+		 */
+		blogPostUrlId(){
+			return `${this.blogPost.id}-${this.blogPost.title.toLowerCase().replaceAll(/[^\w\d]/gi, '-')}`;
+		}
+
 	},
 
 }
