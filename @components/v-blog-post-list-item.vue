@@ -8,7 +8,9 @@
 
 		<div class="-call">
 
-			<router-link class="-title" :to="{ name: 'blog-post-page', params: { blogPostId: blogPostUrlId } }" tag="a">{{ blogPost.title }}</router-link>
+			<span class="-type">{{ blogPost.type }}</span>
+
+			<span class="-title">{{ blogPost.title }}</span>
 
 			<span class="-description" v-if="blogPost.description">{{ blogPost.description }}</span>
 
@@ -84,7 +86,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 
-	gap: 0.5em;
+	gap: 4px;
 
 	width: 100%;
 
@@ -94,6 +96,13 @@ export default {
 	padding: 20px;
 
 	background-color: rgba(0,0,0,0.2);
+}
+.v-blog-post-list-item > .-call > .-type{
+	opacity: 0.4;
+	color: var(--theme-fg--1);
+	font-size: 14px;
+	/*font-weight: 500;*/
+	margin-bottom: -4px;
 }
 .v-blog-post-list-item > .-call > .-title{
 	color: var(--theme-fg--1);

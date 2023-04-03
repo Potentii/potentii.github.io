@@ -15,7 +15,7 @@
 					size-l
 					dont-focus-on-click>
 				</v-button>
-				<span class="-kind --ui-label">Blog Post</span>
+				<span class="-type --ui-label">{{ blogPost.type }}</span>
 			</div>
 
 
@@ -172,9 +172,9 @@ export default {
 	--v-button--fg: var(--theme-fg--1);
 	--v-button--bg: var(--theme-bg--1);
 }
-.v-blog-post-page > .-main > .-page-type > .-kind{
+.v-blog-post-page > .-main > .-page-type > .-type{
 	opacity: 0.3;
-	font-size: 32px;
+	font-size: 2em;
 	font-weight: 700;
 }
 
@@ -239,8 +239,39 @@ export default {
 
 	margin-top: 16px;
 }
+.v-blog-post-page > .-main > .-content pre{
+	font-family: 'Fira Code', monospace;
+	font-size: 14px;
 
+	margin-top: 16px;
+}
+.v-blog-post-page > .-main > .-content code{
+	display: block;
+	background-color: rgba(255, 255, 255, 0.1);
+	white-space: pre;
+	padding: 16px;
+	border-radius: 18px;
+}
+.v-blog-post-page > .-main > .-content code.language-javascript::before{
+	user-select: none;
+	content: 'Javascript';
+	font-family: 'Poppins', sans-serif;
+	display: block;
+	font-size: 12px;
+	opacity: 0.6;
+	/*font-style: italic;*/
 
+	font-weight: 500;
+	margin-bottom: 8px;
+
+}
+
+.v-blog-post-page > .-main > .-content img{
+	margin-top: 16px;
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+}
 
 /*
  * ==========================================

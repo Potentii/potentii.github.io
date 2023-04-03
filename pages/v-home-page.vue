@@ -342,6 +342,8 @@ export default {
 	flex-direction: column;
 	align-items: center;
 	gap: 2em;
+
+	min-width: max(30%, 30em);
 }
 
 .v-home-page > .-my-work > .-filters > .-search{
