@@ -15,7 +15,7 @@
 					size-l
 					dont-focus-on-click>
 				</v-button>
-				<span class="-type --ui-label">{{ blogPost.type }}</span>
+				<span class="-type --ui-label">{{ blogPost?.type }}</span>
 			</div>
 
 
@@ -27,7 +27,7 @@
 			</section>
 
 
-			<article class="-content" v-html="contentHtml"></article>
+			<article class="-content" ref="content" v-html="contentHtml"></article>
 
 
 			<v-separator class="-separator"></v-separator>
@@ -39,7 +39,7 @@
 					<v-tag
 						class="-tag"
 						:name="tag"
-						v-for="tag in blogPost.tags">
+						v-for="tag in blogPost?.tags || []">
 					</v-tag>
 				</div>
 			</section>
@@ -60,12 +60,12 @@ import BlogPostContentRepo from "../repos/blog-post-content-repo.mjs";
 import VSeparator from "../@components/v-separator.vue";
 import VTag from "../@components/v-tag.vue";
 import marked from "marked";
+import Prism from 'prismjs';
 import * as DOMPurify from 'dompurify';
 import VAuthor from "../@components/v-author.vue";
 import VCopyrightsNotice from "../@components/v-copyrights-notice.vue";
 import VPageBg from "../@components/v-page-bg.vue";
 import VButton from "../@components/v-button.vue";
-
 
 export default {
 
@@ -86,6 +86,8 @@ export default {
 			 * @type {?string}
 			 */
 			content: null,
+
+			contentLayoutDone: false,
 		};
 	},
 
@@ -107,10 +109,21 @@ export default {
 	},
 
 
+	watch: {
+
+		contentLayoutDone(newVal, oldVal){
+			if(!newVal)
+				return;
+			Prism.highlightAllUnder(this.$refs.content);
+		},
+
+	},
+
+
 	async beforeMount() {
 		const blogPostId = /^(.+?)(-.*)?$/i.exec(this.$route.params.blogPostId)[1];
 		if(!blogPostId)
-			throw new Error(`Coud not load blog post: ID not set`);
+			throw new Error(`Could not load blog post: ID not set`);
 
 		const blogPost = this.getBlogPostById(blogPostId);
 		if(!blogPost) {
@@ -121,6 +134,12 @@ export default {
 		this.blogPost = blogPost;
 
 		this.content = await BlogPostContentRepo.getBlogPostContent(this.blogPost.id);
+
+		const interval = setInterval(() => {
+			this.contentLayoutDone = !!this.contentHtml?.trim().length && !!this.$refs.content?.children.length;
+			if(this.contentLayoutDone)
+				clearInterval(interval);
+		}, 50);
 	},
 
 }
@@ -241,15 +260,9 @@ export default {
 }
 .v-blog-post-page > .-main > .-content pre{
 	font-family: 'Fira Code', monospace;
-	font-size: 14px;
+	font-size: 16px;
 
 	margin-top: 16px;
-}
-.v-blog-post-page > .-main > .-content code{
-	display: block;
-	background-color: rgba(255, 255, 255, 0.1);
-	white-space: pre;
-	padding: 16px;
 	border-radius: 18px;
 }
 .v-blog-post-page > .-main > .-content code.language-javascript::before{
@@ -259,11 +272,10 @@ export default {
 	display: block;
 	font-size: 12px;
 	opacity: 0.6;
-	/*font-style: italic;*/
+	color: var(--theme-fg--1);
 
 	font-weight: 500;
 	margin-bottom: 8px;
-
 }
 
 .v-blog-post-page > .-main > .-content img{
