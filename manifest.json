@@ -1,0 +1,17 @@
+{
+	"lang": "en-us",
+	"name": "Potentii",
+	"short_name": "Potentii",
+	"description": "",
+	"start_url": "/",
+	"background_color": "#101010",
+	"theme_color": "#C9B1E8",
+	"orientation": "any",
+	"display": "standalone",
+	"icons": [
+		{
+			"src": "icon-500.jpeg",
+			"sizes": "500x500"
+		}
+	]
+}

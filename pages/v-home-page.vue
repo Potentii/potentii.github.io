@@ -4,7 +4,6 @@
 		<v-page-bg class="-page-bg"></v-page-bg>
 
 
-		<v-button class="-test-steam" @click="testSteam()" text="test"></v-button>
 		<!-- * Hero section * -->
 		<section class="-hero">
 
@@ -157,91 +156,6 @@ export default {
 
 
 	methods: {
-
-		async testSteam(){
-			try{
-
-				const url = localStorage.getItem('url');
-				console.log('url', url)
-
-
-				const headers = JSON.parse(localStorage.getItem('headers'));
-				const mode = localStorage.getItem('mode');
-
-				// const headers = {
-				// 	// 'User-Agent': 'PostmanRuntime/7.29.2',
-				// 	// 'Accept': '*/*',
-				// 	// 'Postman-Token': '1b8fb240-c684-4062-bf9e-5b6c31ed920f',
-				// 	// 'Host': 'partner.steam-api.com',
-				// 	// 'Accept-Encoding': 'gzip, deflate, br',
-				// 	// 'Referer': 'https://potentii.com',
-				// 	// 'Connection': 'keep-alive',
-				//
-				// 	'Access-Control-Allow-Origin' : '*',
-				// 	'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS'
-				// };
-
-
-				// console.log(await axios(url, {
-				// 	method: 'GET',
-				// 	// mode: 'no-cors',
-				// 	// headers: {
-				// 	// 	'Access-Control-Allow-Origin': '*',
-				// 	// 	'Content-Type': 'application/json',
-				// 	// },
-				// 	withCredentials: false,
-				// 	credentials: 'same-origin',
-				// }))
-
-
-				// console.log(await axios.get(url, { mode: 'no-cors', headers }));
-
-				// fetch(url, { method: 'get', mode: 'no-cors', cache: 'no-cache', headers })
-				// 	.then((response) => {
-				// 		const reader = response.body.getReader();
-				// 		return new ReadableStream({
-				// 			start(controller) {
-				// 				return pump();
-				// 				function pump() {
-				// 					return reader.read().then(({ done, value }) => {
-				// 						// When no more data needs to be consumed, close the stream
-				// 						if (done) {
-				// 							controller.close();
-				// 							return;
-				// 						}
-				// 						// Enqueue the next data chunk into our target stream
-				// 						controller.enqueue(value);
-				// 						return pump();
-				// 					});
-				// 				}
-				// 			},
-				// 		});
-				// 	})
-				// 	// Create a new response out of the stream
-				// 	.then((stream) => new Response(stream))
-				// 	// Create an object URL for the response
-				// 	.then((response) => response.text())
-				// 	.then(text => console.log('text', text))
-				// 	// .then((blob) => URL.createObjectURL(blob))
-				// 	// // Update image
-				// 	// .then((url) => console.log((image.src = url)))
-				// 	.catch((err) => console.error(err));
-
-
-
-				const response = await fetch(url, { method: 'get', mode: mode, cache: 'no-cache', headers });
-				//
-				console.log(response);
-				//
-				console.log(await response.text())
-
-
-				// console.log(await (await fetch(url, { method: 'get', mode: 'no-cors', cache: 'no-cache', headers })).text());
-			} catch (err){
-				console.error(err);
-			}
-
-		},
 
 	}
 
