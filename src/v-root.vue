@@ -349,7 +349,8 @@ html, body, #app{
 	--transparent-black: rgba(0,0,0,0.06);
 
 	--theme-fg--1: #F0E4F4;
-	--theme-fg--2: #C9B1E8;
+	/*--theme-fg--2: #C9B1E8;*/
+	--theme-fg--2: #b6a5e8;
 
 	--theme-bg--1: #101010;
 
@@ -467,6 +468,10 @@ html, body, #app{
 	border-radius: 12px;
 }
 
+
+.v-root .--flex-space{
+	flex: 1 1 auto;
+}
 
 
 .v-root .--h-sep{

@@ -28,7 +28,6 @@ export default {
 
 <style>
 .v-copyrights-notice{
-	margin-top: 15em;
 	flex: 0 0 auto;
 
 	display: flex;
@@ -43,5 +42,6 @@ export default {
 .v-copyrights-notice > .-text{
 	opacity: 0.4;
 	font-size: 16px;
+	text-shadow: 1px 1px 0 rgba(0,0,0,1);
 }
 </style>

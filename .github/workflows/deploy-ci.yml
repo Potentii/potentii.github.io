@@ -16,14 +16,14 @@ jobs:
 
       strategy:
          matrix:
-            node-version: [ 18.x ]
+            node-version: [ 24.x ]
             # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
       steps:
-         -  uses: actions/checkout@v3
+         -  uses: actions/checkout@v7
 
          -  name: Build Node.js ${{ matrix.node-version }}
-            uses: actions/setup-node@v3
+            uses: actions/setup-node@v7
             with:
                node-version: ${{ matrix.node-version }}
                cache: 'npm'
@@ -31,7 +31,7 @@ jobs:
          -  run: npm run build
 
          -  name: Dist to gh-pages
-            uses: peaceiris/actions-gh-pages@v3
+            uses: peaceiris/actions-gh-pages@v4
             with:
                publish_branch: gh-pages
                github_token: ${{ secrets.GITHUB_TOKEN }}
